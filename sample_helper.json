@@ -1,0 +1,13 @@
+[
+    {
+        "name"      :"git 1",
+        "giturl"    :"https://www.github.com/someperson/project1.git",
+        "desc"      :"GIT 1" 
+    },
+    {
+        "name"      :"git 2",
+        "giturl"    :"https://www.github.com/someperson/project2.git",
+        "desc"      :"GIT 2" 
+
+    }
+]
