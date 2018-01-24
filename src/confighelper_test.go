@@ -13,23 +13,4 @@ func Test_loadConfigFile(t *testing.T) {
 	} else if len(gitconfig) != 2 {
 		t.Error("Wrong length")
 	}
-	/*
-		type args struct {
-			filename string
-		}
-		tests := []struct {
-			name string
-			args args
-			want []GitConfig
-		}{
-		// TODO: Add test cases.
-		}
-		for _, tt := range tests {
-			t.Run(tt.name, func(t *testing.T) {
-				if got := loadConfigFile(tt.args.filename); !reflect.DeepEqual(got, tt.want) {
-					t.Errorf("loadConfigFile() = %v, want %v", got, tt.want)
-				}
-			})
-		}
-	*/
 }

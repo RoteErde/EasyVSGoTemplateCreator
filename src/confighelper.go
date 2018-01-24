@@ -15,6 +15,7 @@ func loadConfigFile(filename string) []GitConfig {
 	raw, err := ioutil.ReadFile(filename)
 	if err != nil {
 		//TODO: handle error
+		return nil
 	}
 	var jsonGitConfig []GitConfig
 	json.Unmarshal(raw, &jsonGitConfig)
