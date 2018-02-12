@@ -25,7 +25,15 @@ import (
 	"unicode"
 )
 
+func init() {
+	// initialization routine goes here
+
+}
+
 func main() {
+	listGitConfig("sample_helper.json")
+}
+func old_main() {
 	args := os.Args
 
 	var createProject = setupMappedFunctions()

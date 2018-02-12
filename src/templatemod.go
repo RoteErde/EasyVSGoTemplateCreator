@@ -118,3 +118,17 @@ func createJavaScriptProject(newProjectName string, projectType string) {
 	}
 
 }
+
+/**
+ */
+func listGitConfig(filename string) {
+	gitconfig := loadConfigFile(filename)
+	if gitconfig == nil {
+		log("unable to load config file")
+	} else {
+		for _, single_gitconfig := range gitconfig {
+			fmt.Println(single_gitconfig.NAME)
+		}
+
+	}
+}
