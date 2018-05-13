@@ -8,6 +8,15 @@ import (
 /*
 remove current cached directory (in case previous operations failed)
 */
+
+func deleteExistingDirectory(deldir string) bool {
+	if err := os.RemoveAll(deldir); err != nil {
+		log(err.Error())
+		return false
+	}
+	return true
+}
+
 func deleteExistingGoDirectory() bool {
 	if err := os.RemoveAll("VSCodeGoLangStarterTemplate"); err != nil {
 		log(err.Error())

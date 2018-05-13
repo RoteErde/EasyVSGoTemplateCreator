@@ -11,7 +11,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "go build -o ./bin/output.exe ./src",
+            "command": "go build -o ./bin/output.exe .",
             "group":{
                 "kind":"build",
                 "isDefault": true

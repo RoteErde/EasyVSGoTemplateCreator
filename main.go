@@ -28,7 +28,7 @@ import (
 func main() {
 	args := os.Args
 
-	var createProject = setupMappedFunctions()
+	plist := NewProjectInfoList()
 
 	if len(args) > 2 {
 		var newProjectName = args[1]
@@ -38,24 +38,43 @@ func main() {
 		*/
 		defer func() {
 			if r := recover(); r != nil {
-				printHelp()
+				printHelp(plist)
 			}
 		}()
 
 		if isAlphanumeric(newProjectName) {
 			var projectType = strings.ToLower(args[2])
-			createProject[projectType](newProjectName, projectType)
+			plistindex, indexerr := getProjectType(plist, projectType)
+			if indexerr != nil {
+				printHelp(plist)
+				return
+			}
+			createProject(plist[plistindex], newProjectName)
 		} else {
-			printHelp()
+			printHelp(plist)
 		}
 	} else {
-		printHelp()
+		printHelp(plist)
 	}
 
 }
 
-func printHelp() {
-	fmt.Println("easycreate <project> <golang/rust/ts/js>")
+func printHelp(plist []ProjectInfo) {
+	args := os.Args
+	fmt.Println("Usage:")
+	fmt.Print(args[0] + " <project> <")
+	for _, eachproj := range plist {
+		fmt.Print(eachproj.Keyword)
+		fmt.Print("/")
+	}
+	fmt.Println(">")
+	fmt.Printf("Name\t\t\tDescription\n")
+	fmt.Println("===========================")
+	for _, eachproj := range plist {
+		fmt.Printf("%s\t\t\t%s\n", eachproj.Keyword, eachproj.Description)
+
+	}
+
 }
 
 /*

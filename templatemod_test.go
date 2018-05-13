@@ -1,59 +1,48 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"testing"
 )
 
-func Test_createRustProject(t *testing.T) {
-	os.RemoveAll("Test_RustLangGitClone")
-	createRustProject("Test_RustLangGitClone", "rust")
-	_, err := os.Stat("Test_RustLangGitClone")
-	fmt.Println("Testing Rust Cloning")
-	if err == nil {
-		os.RemoveAll("Test_RustLangGitClone")
-	} else {
-		t.Error("Failed")
+func TestNewProjectInfoList(t *testing.T) {
+	plist := NewProjectInfoList()
+	if len(plist) == 0 {
+		t.Error("Empty list, expecting more than 0 elements")
 	}
-
 }
 
-func Test_createGoProject(t *testing.T) {
-	os.RemoveAll("Test_GoLangGitClone")
-	createGoProject("Test_GoLangGitClone", "golang")
-	_, err := os.Stat("Test_GoLangGitClone")
-	fmt.Println("Testing Go Cloning")
-	if err == nil {
-		os.RemoveAll("Test_GoLangGitClone")
-	} else {
-		t.Error("Failed")
-	}
-
+func Test_createProject(t *testing.T) {
+	plist := NewProjectInfoList()
+	createProject(plist[0], "ds")
 }
 
-func Test_createTypeScript(t *testing.T) {
-	os.RemoveAll("Test_TSGitClone")
-	createTypeScriptProject("Test_TSGitClone", "ts")
-	_, err := os.Stat("Test_TSGitClone")
-	fmt.Println("Testing TS Cloning")
-	if err == nil {
-		os.RemoveAll("Test_TSGitClone")
-	} else {
-		t.Error("Failed")
+func Test_getProjectType(t *testing.T) {
+	type args struct {
+		pinfo       []ProjectInfo
+		projecttype string
 	}
-
-}
-
-func Test_createJavaScriptProject(t *testing.T) {
-	os.RemoveAll("Test_JSGitClone")
-	createJavaScriptProject("Test_JSGitClone", "js")
-	_, err := os.Stat("Test_JSGitClone")
-	fmt.Println("Testing JS Cloning")
-	if err == nil {
-		os.RemoveAll("Test_JSGitClone")
-	} else {
-		t.Error("Failed")
+	validArgs := args{NewProjectInfoList(), "ts"}
+	invalidArgs := args{NewProjectInfoList(), "tss"}
+	tests := []struct {
+		name    string
+		args    args
+		want    int
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{"test for valid list", validArgs, 2, false},
+		{"test for valid list", invalidArgs, -1, true},
 	}
-
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := getProjectType(tt.args.pinfo, tt.args.projecttype)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("getProjectType() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("getProjectType() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
