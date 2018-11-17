@@ -22,6 +22,7 @@ func NewProjectInfoList() []ProjectInfo {
 		ProjectInfo{Keyword: "rust", Url: "https://github.com/RoteErde/RustVSCodeTemplate"},
 		ProjectInfo{Keyword: "ts", Url: "https://github.com/rebooting/TypeScriptVSCodeTemplate"},
 		ProjectInfo{Keyword: "js", Url: "https://github.com/rebooting/JsWebDeVSCodeTemplate"},
+		ProjectInfo{Keyword: "winpython", Url: "https://github.com/RoteErde/PythonWin32Template"},
 		ProjectInfo{Keyword: "webgae", Url: "https://github.com/rebooting/sampleGAEWeb", Description: "Google App Engine Python Sample"},
 	}
 }
@@ -47,6 +48,8 @@ func pullTemplateRepo(projectType string, newProjectName string) bool {
 		args = []string{"clone", "https://github.com/rebooting/JsWebDeVSCodeTemplate", newProjectName}
 	case "gaeweb":
 		args = []string{"clone", "https://github.com/rebooting/sampleGAEWeb", newProjectName}
+	case "winpython":
+		args = []string{"clone", "https://github.com/RoteErde/PythonWin32Template", newProjectName}
 
 	default:
 		fmt.Println("No valid repository specify")
