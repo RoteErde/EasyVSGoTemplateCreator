@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"gopkg.in/src-d/go-git.v4"
@@ -24,51 +23,10 @@ func NewProjectInfoList() []ProjectInfo {
 		ProjectInfo{Keyword: "js", Url: "https://github.com/rebooting/JsWebDeVSCodeTemplate"},
 		ProjectInfo{Keyword: "winpython", Url: "https://github.com/RoteErde/PythonWin32Template"},
 		ProjectInfo{Keyword: "webgae", Url: "https://github.com/rebooting/sampleGAEWeb", Description: "Google App Engine Python Sample"},
+		ProjectInfo{Keyword: "electron", Url: "https://github.com/RoteErde/VSElectronReactStarter", Description: "Electron React App"},
 	}
 }
 
-/**
-Alvin Ng
-
-Logic for cloning
-*/
-
-func pullTemplateRepo(projectType string, newProjectName string) bool {
-	//var cmd = "git"
-	var args []string
-
-	switch projectType {
-	case "golang":
-		args = []string{"clone", "https://github.com/RoteErde/VSCodeGoLangStarterTemplate", newProjectName}
-	case "rust":
-		args = []string{"clone", "https://github.com/RoteErde/RustVSCodeTemplate", newProjectName}
-	case "ts":
-		args = []string{"clone", "https://github.com/rebooting/TypeScriptVSCodeTemplate", newProjectName}
-	case "js":
-		args = []string{"clone", "https://github.com/rebooting/JsWebDeVSCodeTemplate", newProjectName}
-	case "gaeweb":
-		args = []string{"clone", "https://github.com/rebooting/sampleGAEWeb", newProjectName}
-	case "winpython":
-		args = []string{"clone", "https://github.com/RoteErde/PythonWin32Template", newProjectName}
-
-	default:
-		fmt.Println("No valid repository specify")
-		return false
-	}
-
-	git.PlainClone(newProjectName, false, &git.CloneOptions{
-		URL:               args[1],
-		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
-	})
-	/*
-		if cmdout, err := exec.Command(cmd, args...).Output(); err != nil {
-			log(string(cmdout))
-			log(err.Error())
-			return false
-		}*/
-
-	return true
-}
 func getProjectType(pinfo []ProjectInfo, projecttype string) (int, error) {
 	for index := range pinfo {
 		if pinfo[index].Keyword == projecttype {
