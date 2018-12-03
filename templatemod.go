@@ -23,7 +23,8 @@ func NewProjectInfoList() []ProjectInfo {
 		ProjectInfo{Keyword: "js", Url: "https://github.com/rebooting/JsWebDeVSCodeTemplate"},
 		ProjectInfo{Keyword: "winpython", Url: "https://github.com/RoteErde/PythonWin32Template"},
 		ProjectInfo{Keyword: "webgae", Url: "https://github.com/rebooting/sampleGAEWeb", Description: "Google App Engine Python Sample"},
-		ProjectInfo{Keyword: "electron", Url: "https://github.com/RoteErde/VSElectronReactStarter", Description: "Electron React App"},
+		ProjectInfo{Keyword: "electronr", Url: "https://github.com/RoteErde/VSElectronReactStarter", Description: "Electron React App"},
+		ProjectInfo{Keyword: "electrona", Url: "https://github.com/RoteErde/VSElectronAngularStarter", Description: "Electron Angular App"},
 	}
 }
 
